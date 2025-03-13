@@ -1,0 +1,90 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/admin_panel/admin_edit_project.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <h1 id="add">Изменение проекта с расчетами</h1>
+    <div class="form">
+        <div class="filler"></div>
+        <form class="forma" action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+            {% for f in form %}
+                {% if f.label == 'Файл' %}
+                    <div id="ff-vid" class="form-field-duo">
+
+                            <label id="label_{{ f.id_for_label }}" for="{{ f.id_for_label }}">
+                                {% if file %}
+                                    {{ file }}
+                                {% else %}
+                                    Файл
+                                {% endif %}
+                            </label>{{ f }}
+
+                    </div>
+                    {% if f.errors %}
+                        <span>{{f.errors}}</span>
+                    {% endif %}
+
+                {% else %}
+                    <div class="form-field">
+                        <label id="label_{{ f.id_for_label }}" for="{{ f.id_for_label }}">{{ f.label }}</label>
+                        {{ f }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="fil">
+                <span>Картинки</span>
+                <div id="im" class="imgs">
+                    {% for photo in photos %}
+                        <div id="ph-{{photo.id}}" class="im-block">
+                            <img class="photo" src="{{photo.photo.url}}" alt="">
+                            <button class="del-b" type="button" onclick="delete_photo({{photo.id}}, 'calculated')"><i class="material-icons-outlined">close</i></button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div id="inputs" class="inputs">
+                <label class="form_i" for="1" id="l-1">Выберите картинки с зажатым ctrl</label>
+                <input multiple type="file" accept="image/*" id="1" class="image-input" name="1" onchange="change_l()">
+            </div>
+
+            <button class="form-button" type="submit">Сохранить</button>
+        </form>
+        <div class="filler"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/admin_panel/project_edit.js' %}"></script>
+    <script>
+
+        document.getElementById('id_file').addEventListener('change', () => {
+            document.getElementById('label_id_file').innerText = document.getElementById('id_file').value
+        })
+
+
+
+        if ('{{file}}' != 'False'){
+            let img_ = document.getElementsByClassName('form-field-duo')[0]
+            img_.childNodes[2].remove()
+            img_.childNodes[2].remove()
+            img_.childNodes[2].remove()
+            img_.childNodes[2].remove()
+            img_.childNodes[2].remove()
+            img_.childNodes[2].remove()
+            img_.childNodes[2].remove()
+            img_.childNodes[2].remove()
+            document.getElementById('ff-vid').innerHTML += '<a id="watch" href="/get_file/{{file}}">Скачать</a>'
+        }
+        else{
+            document.getElementById('ff-vid').style.gridTemplateColumns = '100%'
+        }
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'new_ui/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/new_ui/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="profile-block">
+
+        <div class="orders">
+
+            <h1>История заказов</h1>
+
+            <div class="orders-list">
+                {% if orders %}
+
+                    {% for order in orders %}
+                        <div class="order">
+                            <div class="n">
+                                <span class="atr">ID заказа: {{ order.id }}</span>
+                            </div>
+                            <div class="l">
+                                <span class="atr">Подан:</span><span class="r">{{ order.create_at }}</span>
+                            </div>
+                            <div class="l">
+                                <span class="atr">Общая стоимость:</span><span class="r">{{ order.total_price|intcomma }} ₽</span>
+                            </div>
+                            <div class="n">
+                                <span class="atr">Статус: {{ order.status }}</span>
+                            </div>
+                            <div class="n">
+                                <a href="/orders/{{ order.id }}">Перейти</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h2 style="text-align: center;">Заказы отсутствуют</h2>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+        <div class="contacts">
+
+            <h1>Контактные данные</h1>
+
+            <div id="contacts-list" class="contacts-list">
+
+                <div class="contact">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email"
+                       {% if request.user.email %}
+                           value="{{ request.user.email }}"
+                       {% endif %}
+                    >
+                </div>
+                <div class="contact">
+                    <label for="phone_number">Номер телефона</label>
+                    <input type="number" id="phone_number" name="phone_number"
+                       {% if request.user.phone_number %}
+                           value="{{ request.user.phone_number }}"
+                       {% endif %}
+                    >
+                </div>
+
+                <button id="save_contacts" onclick="update_contacts()" type="button">Сохранить</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script src="{% static 'js/new_ui/profile.js' %}"></script>
+
+{% endblock %}

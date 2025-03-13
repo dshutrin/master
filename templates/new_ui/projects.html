@@ -1,0 +1,61 @@
+{% extends 'new_ui/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/new_ui/projects.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="catalog-header">
+        <h1>Мастер Хабаровск</h1>
+        <h3>Каталог проектов</h3>
+    </div>
+
+  <div class="list">
+      {% if ready_projects %}
+          <h2>Готовые проекты</h2>
+            <div class="ready grid">
+                {% for project in ready_projects %}
+
+                    <div class="project">
+                        <div class="image-h">
+                            <img class="pr-img" src="{{project.photo}}" alt="">
+                        </div>
+                        <div class="data-h">
+                            <span class="project-price">{{ project.price|intcomma }} ₽</span>
+                            <span title="{{ project.name }}" class="title">{{ project.name }}</span>
+                        </div>
+                        <div class="but-block">
+                            <a class="link_to" href="ready_project/{{project.id}}">Перейти</a>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+      {% endif %}
+      {% if calculated_projects %}
+          <h2>Проекты с предварительными расчетами</h2>
+          <div class="calculated grid">
+              {% for project in calculated_projects %}
+
+                <div class="project">
+                    <div class="image-h">
+                        <img class="pr-img" src="{{project.photo}}" alt="">
+                    </div>
+                    <div class="data-h">
+                        <span class="project-price">{{ project.price|intcomma }} ₽</span>
+                        <span title="{{ project.name }}" class="title">{{ project.name }}</span>
+                    </div>
+                    <div class="but-block">
+                        <a class="link_to" href="calculated_project/{{project.id}}">Перейти</a>
+                    </div>
+                </div>
+
+            {% endfor %}
+          </div>
+      {% endif %}
+  </div>
+
+{% endblock %}

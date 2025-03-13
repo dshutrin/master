@@ -1,0 +1,45 @@
+{% extends 'admin_panel/base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/admin_panel/admin_add_project.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <h1 id="add">Добавление готового проекта</h1>
+    <div class="form">
+        <div class="filler"></div>
+        <form class="forma" action="" method="post" enctype="multipart/form-data">
+
+            {% for f in form %}
+                {% if f.label == 'Видео' %}
+                    <div class="form-field-duo">
+                        <label id="label_{{ f.id_for_label }}" for="{{ f.id_for_label }}">{{ f.label }}</label>
+                        {{ f }}
+                        <button id="clear_image_button" type="button" onclick="clear_vid()">Очистить</button>
+                    </div>
+                    {% if f.errors %}
+                        <span>{{f.errors}}</span>
+                    {% endif %}
+                {% else %}
+                    <div class="form-field">
+                        <label id="label_{{ f.id_for_label }}" for="{{ f.id_for_label }}">{{ f.label }}</label>
+                        {{ f }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+                    <div id="inputs" class="inputs">
+                        <label class="label-input form_item" for="1" id="l-1">Выберите картинки с зажатым ctrl</label>
+                        <input multiple type="file" accept="image/*" id="1" class="image-input" name="1" onchange="change_l()">
+                    </div>
+            {% csrf_token %}
+            <button class="form-button" type="submit">Сохранить</button>
+        </form>
+        <div class="filler"></div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/admin_panel/project_add.js' %}"></script>
+{% endblock %}

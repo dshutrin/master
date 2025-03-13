@@ -1,0 +1,55 @@
+{% extends 'new_ui/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/new_ui/proj_details.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+        <h1>Мастер Хабаровск</h1>
+        <h3>Проект "{{project.project.name}}"</h3>
+</div>
+
+<div class="data">
+
+
+    {% if project.photos %}
+         <h1 style="text-align: center;">Фотографии</h1>
+         <div class="photos">
+            {% for photo in project.photos %}
+                <div class="photo">
+                    <img class="ph" src="{{photo}}" alt="">
+                </div>
+            {% endfor %}
+         </div>
+    {% endif %}
+    {% if project.video %}
+        <div class="video-holder">
+        <h1 style="text-align: center; color: white; margin-top: 0px; margin-bottom: 2rem;">Видеообзор</h1>
+            <div class="video">
+                <video id="vid" controls src="{{project.video}}"></video>
+            </div>
+        </div>
+    {% endif %}
+<div class="wrapper">
+<div class="text">
+    {% if project.project.description %}
+        <h1 style="text-align: center;">Описание</h1>
+        <div class="description">
+            <h2>{{project.project.description}}</h2>
+        </div>
+    {% endif %}
+    <div class="m">
+    <span style="font-size: 30px;">Цена: <span style="font-size: 34px;">{{ project.project.price|intcomma }} ₽</span></span></div>
+
+    <span class="for_mobile" style="font-size: 30px;">Цена: {{ project.project.price|intcomma }} ₽</span>
+</div>
+</div>
+
+</div>
+
+
+{% endblock %}

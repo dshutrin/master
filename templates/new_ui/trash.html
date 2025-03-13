@@ -1,0 +1,106 @@
+{% extends 'new_ui/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/new_ui/trash.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <h1 id="namer">Корзина</h1>
+
+    <div class="trash-content">
+
+        <div class="products-list">
+            {% if pcount > 0 %}
+                {% for p in products %}
+                    <div id="tp-{{ p.id }}" class="trash-product pp-{{p.product.id}} for_desktop">
+                        <div onclick="document.location='/product/{{p.product.id}}'" class="tp-img">
+                            {% if p.product.photo %}
+                                <img class="iimg" src="{{ p.product.photo.url }}" alt="">
+                            {% else %}
+                                <div class="iimg filler_div"></div>
+                            {% endif %}
+                        </div>
+                        <div onclick="document.location='/product/{{p.product.id}}'" class="tp-desc">
+                            <span class="pname">{{ p.product.name }}</span>
+                            <span class="pcode">{{ p.product.product_code }}</span>
+                        </div>
+                        <div onclick="document.location='/product/{{p.product.id}}'" class="tp-price">
+                            <span>Стоимость: {{ p.product.price|intcomma }}₽</span>
+                        </div>
+                        <div class="td-counter">
+                            <div class="counter">
+                                <label id="label" style="margin-right: 1rem;">Количество:</label>
+                                <button type="button" onclick="update_uitp_count_down({{request.user.id}}, {{p.product.id}})">-</button>
+                                <input readonly id="p-{{ p.product.id }}" onchange="update_uitp_count_({{ request.user.id }}, {{ p.product.id }})" type="number" value="{{ p.pcount }}">
+                                <button type="button" onclick="update_uitp_count_up({{request.user.id}}, {{p.product.id}})">+</button>
+                            </div>
+                        </div>
+                        <div class="tp-rmb">
+                            <div class="wrap">
+                            <button type="button" onclick="rm_prd({{ p.id }})" class="rm material-symbols-outlined">
+                                delete
+                            </button></div>
+                        </div>
+                    </div>
+
+
+                    <div id="tp-{{ p.id }}-m" class="trash-product pp-{{p.product.id}} for_mobile">
+                        <div onclick="document.location='/product/{{p.product.id}}'" class="tp-img">
+                            {% if p.product.photo %}
+                                <img class="iimg" src="{{ p.product.photo.url }}" alt="">
+                            {% else %}
+                                <div class="iimg filler_div"></div>
+                            {% endif %}
+                        </div>
+                        <div onclick="document.location='/product/{{p.product.id}}'" class="tp-desc">
+                            <span class="pname">{{ p.product.name }}</span>
+                            <span class="pcode">{{ p.product.product_code }}</span>
+                        </div>
+                        <div class="tp-price counter">
+                            <span>{{ p.product.price|intcomma }}₽</span>
+                                <button type="button" onclick="update_uitp_count_down({{request.user.id}}, {{p.product.id}})">-</button>
+                                <input readonly id="p-{{ p.product.id }}-m" onchange="update_uitp_count_({{ request.user.id }}, {{ p.product.id }})" type="number" value="{{ p.pcount }}">
+                                <button type="button" onclick="update_uitp_count_up({{request.user.id}}, {{p.product.id}})">+</button>
+
+                        </div>
+
+                        <div class="tp-rmb">
+                            <div class="wrap">
+                            <button type="button" onclick="rm_prd({{ p.id }})" class="rm material-symbols-outlined">
+                                delete
+                            </button></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h1>Ваша корзина пуста!</h1>
+            {% endif %}
+        </div>
+
+        <div class="data-block">
+            
+            <div class="complete-block">
+                {% if pcount > 0 %}
+                    {% if user_contacts %}
+                        <button id="accept" type="button" onclick="add_order({{ request.user.id }})">Оставить заявку</button>
+                    {% else %}
+                        <span id="contacts-error">Для оформления заявки необходимо указать свои данные в личном кабинете</span>
+                    {% endif %}
+                {% endif %}
+                <span id="inf">Цена за доставку уточняется у менеджера</span>
+            </div>
+
+            <div class="info-block">
+                <span id="ts">Общая стоимость: {{ total_sum|intcomma }}₽</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="{% static 'js/new_ui/trash.js' %}"></script>
+
+{% endblock %}

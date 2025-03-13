@@ -1,0 +1,51 @@
+{% extends 'new_ui/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/new_ui/calc_proj_details.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="header">
+        <h1>Мастер Хабаровск</h1>
+        <h3>Проект "{{project.name}}"</h3>
+</div>
+
+<div class="data">
+    {% if photos %}
+         <h1 style="text-align: center;">Фотографии</h1>
+         <div class="photos">
+            {% for photo in photos %}
+                <div class="photo">
+                    <img class="ph" src="{{photo}}" alt="">
+                </div>
+            {% endfor %}
+         </div>
+    {% endif %}
+<div class="wrapper">
+    <div class="text">
+    {% if project.description %}
+        <h1 style="text-align: center;">Описание</h1>
+        <div class="description">
+            <h2 id="descr">{{project.description}}</h2>
+        </div>
+    {% endif %}
+        <span style="font-size: 30px;">Цена: <span style="font-size: 34px;">{{ project.price|intcomma }} ₽</span></span>
+    </div>
+</div>
+
+{% if file %}
+    <div class="file-h">
+        <h1>Скачать файл с описанием:</h1>
+        <a class="fl" href="/get_file?url={{file}}"><span class="material-symbols-outlined fix">download</span>Скачать</a>
+    </div>
+{% else %}
+        <div class="mar-b"></div>
+{% endif %}
+
+</div>
+
+
+{% endblock %}

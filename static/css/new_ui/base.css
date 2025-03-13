@@ -1,0 +1,200 @@
+* {
+    font-family: 'Golos Text', sans-serif;
+    text-decoration: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+
+@media (width > 500px) {
+
+    .content_main::-webkit-scrollbar{
+        display: none;
+    }
+
+    .navbar {
+        position: fixed;
+        z-index: 1000000;
+
+        border-radius: calc(30px + 1rem);
+        height: 60px;
+
+        background-color: white;
+
+        top: 1rem;
+        left: 1vw;
+        width: calc(98vw - 3rem);
+        padding: 1rem;
+
+        -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.29);
+        -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.29);
+        box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.29);
+
+        display: grid;
+        grid-template-columns: 15% 70% 15%;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .main-menu {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    .main-menu > li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 1rem;
+        border-radius: 1rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .main-menu > li > a {
+        color: black;
+        font-size: 20px;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .main-menu > li:hover a {
+        transform: scale(1.2);
+    }
+
+    .link {
+        display: flex;
+        justify-content: end;
+    }
+
+    #to_products_link {
+        background-color: #4895EF;
+        color: white;
+        font-size: 20px;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+    }
+
+    .content_main{
+        overflow: scroll;
+    }
+
+    .content::-webkit-scrollbar{
+        display: none;
+    }
+
+    .navbar-for_mobile{
+        display: none;
+    }
+    #mob_modal{
+        display: none;
+    }
+}
+
+@media (width <= 500px) {
+
+    .navbar-for_mobile{
+        height: 8vh;
+        width: 100vw;
+        background-color: white;
+        display: grid;
+        grid-template-columns: 34% 33% 33%;
+    }
+    .navbar{
+        display: none;
+    }
+    .container{
+        height: 100vh;
+        width: 100vw;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+    #logo_mobile{
+        width: 100%;
+    }
+    .flexwrap{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #menu{
+        background-color: #560BAD;
+        border: none;
+        color: white;
+        border-radius: 10px;
+        height: 60%;
+        width: 80%;
+        font-size: 18px;
+    }
+    .link-for_mobile{
+        background-color: #4895EF;
+        padding: 0.5rem 1rem;
+        border-radius: 10px;
+        font-size: 14px;
+    }
+    #to_products_link{
+        color: white;
+        text-decoration: none;
+    }
+    #mob_modal{
+        background: rgba(255, 255, 255, 0.68);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(7px) saturate(181%);
+        -webkit-backdrop-filter: blur(7px) saturate(181%);
+        width: calc(70vw - 6px);
+        margin-left: 15vw;
+        border-radius: 20px;
+        padding: 1rem 0;
+        border: 1px solid grey;
+        max-height: 80vh;
+        position: absolute;
+        z-index: 1000000;
+        top: -100vh;
+        transition: all 1s;
+    }
+
+    .menu-li{
+        color: white;
+        padding: 0.5rem;
+        margin: 0.5rem;
+        background-color: #560BAD;
+        width: 80%;
+        border-radius: 1rem;
+        text-align: center;
+    }
+
+    .link-container{
+        display: grid;
+        grid-template-columns: 100%;
+        justify-items: center;
+    }
+    #close_menu{
+        font-size: 20px;
+        background-color: inherit;
+        border: 2px solid #756b6b;
+        color: #756b6b;
+        margin-top: 0.5rem;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+    .con{
+        backdrop-filter: none;
+    }
+    .content_main{
+        height: 92vh;
+        width: 100vw;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    .content_main::-webkit-scrollbar{
+        display: none;
+    }
+}
