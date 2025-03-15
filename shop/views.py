@@ -18,8 +18,8 @@ from .utils import *
 def home(request):
 
 	projects = Ready_project.objects.all()
-	if len(projects) > 4:
-		projects = projects[:4]
+	if len(projects) > 5:
+		projects = projects[:5]
 
 
 	class Projs:
@@ -363,6 +363,7 @@ def add_order(request):
 			if request.user.phone_number:
 				contacts += f'Номер телефона: {request.user.phone_number} '
 
+
 			is_good = True
 
 			try:
@@ -385,7 +386,7 @@ def add_order(request):
 
 			if is_good:
 				UserTrash.objects.filter(user=request.user).delete()
-				return JsonResponse({}, status=200)
+				return JsonResponse({"oid": order.id}, status=200)
 
 			return JsonResponse({}, status=500)
 
@@ -478,7 +479,11 @@ def registration(request):
 
 			if psw1 == psw2:
 
-				user = CustomUser.objects.create_user(username=username, email=email, password=psw1)
+				phone = form.cleaned_data['phone_number']
+				name = form.cleaned_data['name']
+				surname = form.cleaned_data['surname']
+
+				user = CustomUser.objects.create_user(username=username, email=email, password=psw1, phone_number=phone, name=name, surname=surname)
 				user.set_password(psw1)
 				user.save()
 
@@ -553,6 +558,7 @@ def projects(request):
 			self.id = project.id
 			self.price = project.price
 			self.name = project.name
+			self.for_tos = project.for_tos
 			for ph in Project_photo.objects.filter(project=project):
 				if ph.photo:
 					self.photo = ph.photo.url
@@ -561,6 +567,7 @@ def projects(request):
 			self.id = project.id
 			self.price = project.price
 			self.name = project.name
+			self.for_tos = project.for_tos
 			for ph in Calculated_project_photo.objects.filter(project=project):
 				if ph.photo:
 					self.photo = ph.photo.url
@@ -583,3 +590,27 @@ def calculated_project_details(request, id):
 		if ph.photo:
 			photos.append(ph.photo.url)
 	return render(request, 'new_ui/calculated_project_detail.html', {'project': project, 'photos': photos, 'file': file})
+
+
+def tos_projects(request):
+	class RProject:
+		def __init__(self, project):
+			self.id = project.id
+			self.price = project.price
+			self.name = project.name
+			for ph in Project_photo.objects.filter(project=project):
+				if ph.photo:
+					self.photo = ph.photo.url
+	class CProject:
+		def __init__(self, project):
+			self.id = project.id
+			self.price = project.price
+			self.name = project.name
+			for ph in Calculated_project_photo.objects.filter(project=project):
+				if ph.photo:
+					self.photo = ph.photo.url
+
+	return render(request, 'new_ui/tos.html', {
+		'ready_projects': [RProject(x) for x in Ready_project.objects.all() if x.for_tos],
+		'calculated_projects': [CProject(x) for x in Calculated_project.objects.all() if x.for_tos]
+	})

@@ -126,3 +126,5 @@ if not os.path.exists(os.path.join(BASE_DIR, 'media')):
     os.mkdir(os.path.join(BASE_DIR, 'media/tmp'))
     os.mkdir(os.path.join(BASE_DIR, 'media/projects_videos'))
     os.mkdir(os.path.join(BASE_DIR, 'media/projects_files'))
+    os.mkdir(os.path.join(BASE_DIR, 'media/ready_projects_images'))
+    os.mkdir(os.path.join(BASE_DIR, 'media/calculated_projects_images'))

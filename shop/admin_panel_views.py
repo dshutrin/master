@@ -845,3 +845,45 @@ def admin_edit_calc_project(request, pid):
             })
     else:
         HttpResponseNotFound(request)
+
+
+@csrf_exempt
+def admin_do_tos(request):
+    if request.POST:
+        try:
+            if request.POST.get('pr') == 'c':
+                project = Calculated_project.objects.filter(id=request.POST.get('id'))[0]
+                project.for_tos = True
+                project.save()
+                return JsonResponse({}, status=200)
+
+            elif request.POST.get('pr') == 'r':
+                project = Ready_project.objects.filter(id=request.POST.get('id'))[0]
+                project.for_tos = True
+                project.save()
+                return JsonResponse({}, status=200)
+        except:
+            return JsonResponse({}, status=500)
+
+
+
+
+
+@csrf_exempt
+def admin_undo_tos(request):
+    if request.POST:
+        try:
+            if request.POST.get('pr') == 'c':
+                project = Calculated_project.objects.filter(id=request.POST.get('id'))[0]
+                project.for_tos = False
+                project.save()
+                return JsonResponse({}, status=200)
+
+            elif request.POST.get('pr') == 'r':
+                project = Ready_project.objects.filter(id=request.POST.get('id'))[0]
+                project.for_tos = False
+                project.save()
+                return JsonResponse({}, status=200)
+
+        except:
+            return JsonResponse({}, status=500)

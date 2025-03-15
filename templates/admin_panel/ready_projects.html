@@ -21,6 +21,7 @@
                 <th>Наименование</th>
                 <th>Видео</th>
                 <th>Цена</th>
+                <th>ТОС</th>
                 <th>Действия</th>
             </tr>
         </thead>
@@ -53,6 +54,13 @@
                         {% if project.project.price %}
                             {{ project.project.price }}₽
                         {% endif %}
+                    </td>
+                    <td>
+                        <input id="inp-{{project.project.id}}" type="checkbox" onchange="ready_change_tos({{project.project.id}})"
+                            {% if project.project.for_tos %}
+                                checked="checked"
+                            {% endif %}
+                        >
                     </td>
                     <td>
                         <div class="actions-td">

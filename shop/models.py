@@ -114,6 +114,7 @@ class Ready_project(models.Model):
 	price = models.FloatField(verbose_name='Цена')
 	video = models.FileField(verbose_name='Видео', null=True, blank=True, upload_to='projects_videos', validators=[FileExtensionValidator(['mp4', 'mov', 'webm', 'avi', 'mkv', 'wmv', 'swf'])])
 	description = models.TextField(verbose_name='Опиание', null=True, blank=True)
+	for_tos = models.BooleanField(verbose_name='Для ТОС или нет', null=False, default=False, blank=True)
 
 	class Meta:
 		verbose_name = 'Готовый проект'
@@ -134,7 +135,7 @@ class Ready_project(models.Model):
 
 
 class Project_photo(models.Model):
-	photo = models.ImageField(verbose_name='Общий вид', upload_to='products_images', null=True, blank=False)
+	photo = models.ImageField(verbose_name='Общий вид', upload_to='ready_projects_images', null=True, blank=False)
 	project = models.ForeignKey(Ready_project, on_delete=models.CASCADE)
 
 	class Meta:
@@ -151,6 +152,7 @@ class Calculated_project(models.Model):
 	price = models.FloatField(verbose_name='Цена')
 	file = models.FileField(verbose_name='Файл', null=True, blank=True, upload_to='projects_files', validators=[FileExtensionValidator(['txt', 'docx', 'xlsx', 'doc', 'pdf', 'odt', 'tif'])])
 	description = models.TextField(verbose_name='Опиание', null=True, blank=True)
+	for_tos = models.BooleanField(verbose_name='Для ТОС или нет', null=False, default=False, blank=True)
 
 	class Meta:
 		verbose_name = 'Проект с расчетами'
@@ -161,7 +163,7 @@ class Calculated_project(models.Model):
 
 
 class Calculated_project_photo(models.Model):
-	photo = models.ImageField(verbose_name='Общий вид', upload_to='products_images', null=True, blank=False)
+	photo = models.ImageField(verbose_name='Общий вид', upload_to='calculated_projects_images', null=True, blank=False)
 	project = models.ForeignKey(Calculated_project, on_delete=models.CASCADE)
 
 	class Meta:

@@ -48,6 +48,33 @@ table tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
 }
 
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #df6161;
+    border: 1px solid #df6161;
+    border-radius: 3px;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: cornflowerblue;
+    border: 1px solid cornflowerblue;
+}
+
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 6px;
+    height: 12px;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
 .actions-td {
   display: grid;
   grid-template-columns: 50% 50%;

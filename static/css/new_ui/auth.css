@@ -35,6 +35,7 @@ form {
     margin-top: 5rem;
     display: flex;
     flex-direction: column;
+    margin-bottom: 2rem;
 }
 
 .form_block {
@@ -120,6 +121,7 @@ form > a, form > a:active {
         margin-top: 5rem;
         display: flex;
         flex-direction: column;
+        margin-bottom: 4rem;
     }
 
     .form_block {

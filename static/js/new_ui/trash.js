@@ -78,7 +78,11 @@ function add_order(uid) {
     xhr.onload = () => {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
 
-			window.location.reload()
+            console.log(xhr.response)
+
+			if (xhr.response['oid']){
+			    window.location = `/orders/${xhr.response['oid']}`
+			}
 
         }
     };

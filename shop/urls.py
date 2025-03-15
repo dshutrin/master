@@ -38,7 +38,9 @@ admin_panel_urlpatterns = [
 	path('admin_panel/delete_ph_proj/<int:phid>', admin_del_ph_proj),
 	path('admin_panel/calculated_projects', admin_calculated_projects),
 	path('admin_panel/calculated_projects/add', admin_add_calc_project),
-	path('admin_panel/calculated_projects/edit/<int:pid>', admin_edit_calc_project)
+	path('admin_panel/calculated_projects/edit/<int:pid>', admin_edit_calc_project),
+	path('admin_panel/do_tos', admin_do_tos),
+	path('admin_panel/undo_tos', admin_undo_tos)
 ]
 
 urlpatterns = [
@@ -61,5 +63,6 @@ urlpatterns = [
 	path('ready_project/<int:pid>', ready_project_detail),
 	path('get_file', get_file),
 	path('projects', projects),
-	path('calculated_project/<int:id>', calculated_project_details)
+	path('calculated_project/<int:id>', calculated_project_details),
+	path('tos_projects', tos_projects)
 ] + admin_panel_urlpatterns

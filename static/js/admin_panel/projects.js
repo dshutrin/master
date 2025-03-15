@@ -37,3 +37,68 @@ function get_file(url){
     xhr.responseType = 'json';
     xhr.send(`url=${url}`)
 }
+
+function calc_change_tos(cpid){
+
+    let xhr = new XMLHttpRequest();
+    if (document.getElementById(`inp-${cpid}`).checked){
+        xhr.open('POST', `/admin_panel/do_tos`, true);
+    }
+    else{
+        xhr.open('POST', `/admin_panel/undo_tos`, true);
+    }
+
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.responseType = 'json';
+
+    xhr.onload = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+
+
+        }
+        else{
+            if (document.getElementById(`inp-${cpid}`).checked){
+                document.getElementById(`inp-${cpid}`).setAttribute('checked', '')
+            }
+            else{
+                document.getElementById(`inp-${cpid}`).setAttribute('checked', 'checked')
+            }
+        }
+
+    }
+    xhr.send(`id=${cpid}&pr=c`)
+
+}
+
+
+function ready_change_tos(rpid){
+
+    let xhr = new XMLHttpRequest();
+    if (document.getElementById(`inp-${rpid}`).checked){
+        xhr.open('POST', `/admin_panel/do_tos`, true);
+    }
+    else{
+        xhr.open('POST', `/admin_panel/undo_tos`, true);
+    }
+
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.responseType = 'json';
+
+    xhr.onload = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+
+        }
+        else{
+            if (document.getElementById(`inp-${rpid}`).checked){
+                document.getElementById(`inp-${rpid}`).setAttribute('checked', '')
+            }
+            else{
+                document.getElementById(`inp-${rpid}`).setAttribute('checked', 'checked')
+            }
+
+        }
+
+    }
+    xhr.send(`id=${rpid}&pr=r`)
+
+}

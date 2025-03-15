@@ -8,6 +8,9 @@
 
 {% block content %}
 
+
+
+
     <div class="catalog-header">
         <h1>Мастер Хабаровск</h1>
         <h3>Мы делаем мир лучше, а людей счастливее</h3>
@@ -113,6 +116,50 @@
                 <button id="filt_but" onclick="document.getElementById('filters').style.right = '0px'">Фильтры</button>
             </div>
 
+
+                {% block scripts %}
+                    <script src="{% static 'js/new_ui/catalog.js' %}"></script>
+                    <script>
+                        if ('{{code_ch}}' != 'False'){
+                            document.getElementById('code_ch').value = '{{code_ch}}'
+                        }
+                        if ('{{n_ch}}' != 'False'){
+                            document.getElementById('n_ch').value = '{{n_ch}}'
+                        }
+                        if ('{{a_s_ch}}' != 'False'){
+                            document.getElementById('a_s_ch').value = {{a_s_ch}}
+                        }
+                        if ('{{a_e_ch}}' != 'False'){
+                            document.getElementById('a_e_ch').value = {{a_e_ch}}
+                        }
+                        if ('{{h_e_ch}}' != 'False'){
+                            document.getElementById('h_e_ch').value = {{h_e_ch}}
+                        }
+                        if ('{{h_s_ch}}' != 'False'){
+                            document.getElementById('h_s_ch').value = {{h_s_ch}}
+                        }
+                        if ('{{w_s_ch}}' != 'False'){
+                            document.getElementById('w_s_ch').value = {{w_s_ch}}
+                        }
+                        if ('{{w_e_ch}}' != 'False'){
+                            document.getElementById('w_e_ch').value = {{w_e_ch}}
+                        }
+                        if ('{{l_s_ch}}' != 'False'){
+                            document.getElementById('l_s_ch').value = {{l_s_ch}}
+                        }
+                        if ('{{l_e_ch}}' != 'False'){
+                            document.getElementById('l_e_ch').value = {{l_e_ch}}
+                        }
+                        if ('{{price_s_ch}}' != 'False'){
+                            document.getElementById('price_s_ch').value = {{price_s_ch}}
+                        }
+                        if ('{{price_e_ch}}' != 'False'){
+                            document.getElementById('price_e_ch').value = {{price_e_ch}}
+                        }
+                    </script>
+                {% endblock %}
+
+
             <div class="products-list">
                 {% for product in products %}
                     <div class="catalog-product">
@@ -151,45 +198,5 @@
 
     </div>
 
-    {% block scripts %}
-        <script src="{% static 'js/new_ui/catalog.js' %}"></script>
-        <script>
-            if ('{{code_ch}}' != 'False'){
-                document.getElementById('code_ch').value = '{{code_ch}}'
-            }
-            if ('{{n_ch}}' != 'False'){
-                document.getElementById('n_ch').value = '{{n_ch}}'
-            }
-            if ('{{a_s_ch}}' != 'False'){
-                document.getElementById('a_s_ch').value = {{a_s_ch}}
-            }
-            if ('{{a_e_ch}}' != 'False'){
-                document.getElementById('a_e_ch').value = {{a_e_ch}}
-            }
-            if ('{{h_e_ch}}' != 'False'){
-                document.getElementById('h_e_ch').value = {{h_e_ch}}
-            }
-            if ('{{h_s_ch}}' != 'False'){
-                document.getElementById('h_s_ch').value = {{h_s_ch}}
-            }
-            if ('{{w_s_ch}}' != 'False'){
-                document.getElementById('w_s_ch').value = {{w_s_ch}}
-            }
-            if ('{{w_e_ch}}' != 'False'){
-                document.getElementById('w_e_ch').value = {{w_e_ch}}
-            }
-            if ('{{l_s_ch}}' != 'False'){
-                document.getElementById('l_s_ch').value = {{l_s_ch}}
-            }
-            if ('{{l_e_ch}}' != 'False'){
-                document.getElementById('l_e_ch').value = {{l_e_ch}}
-            }
-            if ('{{price_s_ch}}' != 'False'){
-                document.getElementById('price_s_ch').value = {{price_s_ch}}
-            }
-            if ('{{price_e_ch}}' != 'False'){
-                document.getElementById('price_e_ch').value = {{price_e_ch}}
-            }
-        </script>
-    {% endblock %}
+
 {% endblock %}

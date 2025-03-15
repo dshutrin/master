@@ -28,7 +28,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 0 8rem;
+        padding: 0 1rem;
         padding-bottom: 3rem;
     }
 
@@ -39,7 +39,7 @@
 
     .projects {
         display: grid;
-        grid-template-columns: 25% 25% 25% 25%;
+        grid-template-columns: 20% 20% 20% 20% 20%;
         padding-top: 2rem;
     }
 
@@ -81,6 +81,12 @@
         background-color: #560BAD;
         padding: 1rem 0;
         padding-bottom: 5rem;
+    }
+
+    .image-hold{
+        height: 100%;
+        display: flex;
+        align-items: center;
     }
 
     .activities {
@@ -273,6 +279,11 @@
         padding-top: 1rem;
     }
 
+    .image-hold{
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
 
 
     .home-cat-title {

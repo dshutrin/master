@@ -54,10 +54,13 @@ class RegForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput, label='Пароль')
     password2 = forms.CharField(widget=forms.PasswordInput, label='Пароль (повторно)')
     email = forms.EmailField(label='email')
+    phone_number = forms.CharField(max_length=32, label='Номер телефона')
+    name = forms.CharField(max_length=255, label='Имя')
+    surname = forms.CharField(max_length=255, label='Фамилия')
 
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'password']
+        fields = ['username', 'email', 'password', 'password2', 'phone_number', 'name', 'surname']
 
 
 class RoleForm(forms.ModelForm):

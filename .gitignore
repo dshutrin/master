@@ -1,6 +1,3 @@
 venv
 .idea
-media/projects_files/*
-media/products_images/*
-media/tmp/*
-media/projects_videos/*
+media/*
