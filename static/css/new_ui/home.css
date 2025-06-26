@@ -6,22 +6,37 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-
-        padding: 10rem 0;
         background-color: #560BAD;
         color: white;
     }
 
-    .header > h1 {
-        font-size: 60px;
+    .header > img {
+        z-index: 50;
+        position: relative;
+        object-fit: cover;
+        width: 100%;
+        max-height: 100vh;
+    }
+
+    .header-title > h1 {
+        font-size: 100px;
         margin: 0;
         margin-top: 3rem;
         margin-bottom: 2rem;
+        -webkit-text-stroke: 1px gray;
     }
 
-    .header > h3 {
-        font-size: 40px;
+    .header-title > h3 {
+        font-size: 60px;
         margin: 0;
+        -webkit-text-stroke: 1px gray;
+    }
+
+    .header-title {
+        z-index: 100;
+        position: absolute;
+        bottom: 10%;
+        left: 5%;
     }
 
     .projs {
