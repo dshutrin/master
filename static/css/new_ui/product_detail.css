@@ -7,7 +7,7 @@
 
         padding: 5rem 0;
         padding-bottom: 0;
-        background-color: #560BAD;
+        background-color: #68a9ec;
         color: white;
     }
 
@@ -62,7 +62,7 @@
     .prod-actions {
         display: flex;
         flex-direction: row;
-        width: calc(100%-3rem);
+        width: calc(100% - 3rem);
         justify-content: flex-end;
 
     }
@@ -112,7 +112,7 @@
 
         padding: 1rem 0;
         padding-bottom: 0;
-        background-color: #560BAD;
+        background-color: #68a9ec;
         color: white;
     }
 
@@ -166,7 +166,7 @@
     .prod-actions {
         display: flex;
         flex-direction: row;
-        width: calc(100%-3rem);
+        width: calc(100% - 3rem);
         justify-content: flex-end;
 
     }

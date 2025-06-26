@@ -9,7 +9,7 @@
 
         padding: 7rem 0;
         padding-bottom: 3rem;
-        background-color: #560BAD;
+        background-color: #68a9ec;
         color: white;
     }
 
@@ -34,7 +34,7 @@
         padding: 4rem 0rem;
         width: 100%;
         text-align: center;
-        background-color: #560BAD;
+        background-color: #68a9ec;
         padding-top: 2rem;
     }
 
@@ -61,7 +61,7 @@
     .text{
         padding: 2rem;
         width: calc(100% - 10rem);
-        background-color: #560BAD;
+        background-color: #68a9ec;
         width: 86%;
         color: white;
         border-radius: 25px;
@@ -92,7 +92,7 @@
 
         padding: 1rem 0;
         padding-bottom: 3rem;
-        background-color: #560BAD;
+        background-color: #68a9ec;
         color: white;
     }
 
@@ -115,7 +115,7 @@
         padding: 2rem 2rem;
         width: calc(100vw - 4rem);
         text-align: center;
-        background-color: #560BAD;
+        background-color: #68a9ec;
 
     }
 
@@ -141,7 +141,7 @@
     .text{
         padding: 2rem 1rem;
         width: calc(100vw - 4rem);
-        background-color: #560BAD;
+        background-color: #68a9ec;
         color: white;
         border-radius: 25px;
         margin-top: 2rem;

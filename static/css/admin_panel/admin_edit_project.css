@@ -133,7 +133,7 @@ textarea {
 
 
 .imgs{
-    width: calc(100%-2rem);
+    width: calc(100% - 2rem);
     padding: 1rem;
     background-color: white;
     border: 2px solid black;
